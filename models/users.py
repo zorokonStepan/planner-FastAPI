@@ -18,7 +18,7 @@ class User(BaseModel):
         }
 
 
-class NewUser(BaseModel):
+class UserSignIn(BaseModel):
     email: EmailStr
     password: str
 
