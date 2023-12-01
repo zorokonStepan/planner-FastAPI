@@ -5,11 +5,16 @@ class Requester:
     RESPONSE_TIMEOUT = 5
 
     @classmethod
-    def __request(cls, url, method="GET", json_data=None):
+    def send_request(cls, url, method="GET", json_data=None):
+        response = None
+
         try:
             response = requests.request(method,
                                         url,
-                                        headers={"Content-Type": "application/json"},
+                                        headers={
+                                            "Content-Type": "application/json",
+                                            "Accept": "application/json",
+                                        },
                                         timeout=cls.RESPONSE_TIMEOUT,
                                         json=json_data)
 
@@ -17,6 +22,10 @@ class Requester:
             return response.json()
 
         except AssertionError as exception:
+            if response:
+                print(f'{response.status_code = }')
+
             print(f'{exception = }')
+            raise exception
         except Exception as exception:
-            print(f'{exception = }')
+            raise exception
