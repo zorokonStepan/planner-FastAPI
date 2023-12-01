@@ -19,13 +19,10 @@ class Requester:
                                         json=json_data)
 
             assert response.status_code == 200
+
             return response.json()
 
-        except AssertionError as exception:
-            if response:
-                print(f'{response.status_code = }')
-
-            print(f'{exception = }')
-            raise exception
+        except AssertionError:
+            return {"status_code": response.status_code}
         except Exception as exception:
             raise exception
