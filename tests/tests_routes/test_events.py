@@ -1,0 +1,4 @@
+
+
+class TestEventsRoutes:
+    pass
