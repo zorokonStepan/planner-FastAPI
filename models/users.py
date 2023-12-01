@@ -22,7 +22,7 @@ class User(BaseModel):
 
 
 class UserSignIn(BaseModel):
-    email: EmailStr
+    email:    EmailStr
     password: str
 
     class Config:
@@ -30,6 +30,5 @@ class UserSignIn(BaseModel):
             "example": {
                 "email":    "fastapi@packt.com",
                 "password": "strong!!!",
-                "events":   [],
             }
         }

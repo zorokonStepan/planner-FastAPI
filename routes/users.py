@@ -35,6 +35,5 @@ async def sign_use_in(user: UserSignIn) -> Union[dict, None]:
             status_code=status.HTTP_403_FORBIDDEN,
             detail="Wrong credential passed"
         )
-    return {
-        "message": "User signed in successfully"
-    }
+
+    return {"message": "User signed in successfully"}
