@@ -1,4 +1,5 @@
+from tests.tests_routes.common_functionaly import Requester
 
 
-class TestEventsRoutes:
+class TestEventsRoutes(Requester):
     pass
