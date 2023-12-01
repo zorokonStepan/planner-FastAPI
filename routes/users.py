@@ -10,16 +10,16 @@ users = {}
 
 
 @user_router.post("/signup")
-async def sign_new_user(data: User) -> Union[dict, None]:
+async def sign_user_up(data: User) -> Union[dict, None]:
     if data.email in users:
         raise HTTPException(
             status_code=status.HTTP_409_CONFLICT,
             detail="User with supplied username exists"
         )
+
     users[data.email] = data
-    return {
-        "message": "User successfully registered!"
-    }
+
+    return {"message": "User successfully registered!"}
 
 
 @user_router.post("/signin")
