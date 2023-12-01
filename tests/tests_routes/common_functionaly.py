@@ -23,6 +23,7 @@ class Requester:
             return response.json()
 
         except AssertionError:
+            print(f"{response.status_code = }")
             return {"status_code": response.status_code}
         except Exception as exception:
             raise exception

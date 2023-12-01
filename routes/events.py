@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Body, HTTPException, status
-from typing import List, Union
+from typing import List, Union, Dict
 
 from models.events import Event
 
@@ -15,9 +15,9 @@ async def retrieve_all_events() -> List[Event]:
 
 
 @event_router.get("/{id}", response_model=Event)
-async def retrieve_event(id_event: int) -> Union[Event, None]:
+async def retrieve_event(id: int) -> Union[Event, None]:
     for event in events:
-        if event.id == id_event:
+        if event.id == id:
             return event
 
     raise HTTPException(
@@ -32,12 +32,12 @@ async def create_event(body: Event = Body(...)) -> dict:
     return {"message": "Event created successfully"}
 
 
-@event_router.delete("/{id")
-async def delete_event(id_event: int) -> dict:
+@event_router.delete("/{id}")
+async def delete_event(id: int) -> dict:
     for event in events:
-        if event.id == id_event:
+        if event.id == id:
             events.remove(event)
-            return {"message": "Event deleted successfully" }
+            return {"message": "Event deleted successfully"}
 
     raise HTTPException(
         status_code=status.HTTP_404_NOT_FOUND,
